@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+//   Specyfikacja twojego laptopa(wypisywanie i wczytywanie danych od użytkownika)
+
+//              • Pobierz od użytkownika nazwę producenta laptopa oraz model. Zapisz te informacje do zmiennych typu
+
+//               String.Nazwij je producer i model;
+
+//              • Pobierz od użytkownika jaki jest model jego procesora i zapisz to do typu String nazywając cpuInfo.
+
+//              • Pobierz od użytkownika ile GB RAM-u ma jego komputer i zapisz je do typu double.
+
+//                Zmienną nazwij ramGb.
+
+//              • Pobierz od użytkownika przekątną ekranu w calach oraz wagę komputera w gramach zapisz kolejno do zmiennej typu double o nazwie diagonal oraz do zmiennej int o nazwie weight.
+
+// Wypisz podane informacje w formie:
+
+//    Informacje o laptopie:
+
+//    Nazwa: < zmienna producer > + < zmienna model >
+
+//    Procesor: < zmienna cpuInfo >
+
+//    Pamięć RAM: < zmienna ramGB >
+
+//    Przekątna ekranu: < zmienna diagonal > cm(zwróć uwagę na jednostkę)
+
+//    Waga: < zmienna weight > kg(zwróć uwagę na jednostkę)
+namespace PD_1_spotkanie
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Podaj nazwe producenta swojego laptopa");
+            string producer = Console.ReadLine();
+
+            Console.WriteLine("Podaj nazwe modelu swojego laptopa");
+            string model = Console.ReadLine();
+
+            Console.WriteLine("Podaj nazwe modelu procesora swojego laptopa");
+            string cpuInfo = Console.ReadLine();
+
+            Console.WriteLine("Podaj ile GB RAM-u ma Twoj laptop");
+            var ramGb = Console.ReadLine();
+
+            Console.WriteLine("Podaj przekatna ekranu w calach");
+            var diagonal = Console.ReadLine();
+
+            Console.WriteLine("Podaj wage komputera w gramach");
+            var weight = Console.ReadLine();
+
+            Console.WriteLine("Informacje o laptopie: ");
+            Console.WriteLine($"Nazwa: {producer}, {model}");       //o takim sposobie wyświetlania 
+            Console.WriteLine("Procesor: " + cpuInfo);              //nie powiedzieliście na wykladzie (chyba ze przysnalem) :D
+            Console.WriteLine("Pamiec RAM: " + DoubleParsing(ramGb));
+            Console.WriteLine("Przekatna ekranu: " + MetricConvertion(DoubleParsing(diagonal)) + " cm");
+            Console.WriteLine("Waga: " + IntParsing(weight)/1000 + " kg");
+            Console.ReadKey();
+        }
+
+        static double DoubleParsing(string input)
+        {
+            if (!Double.TryParse(input, out double parsed))
+            {
+                throw new System.ArgumentException("Parametr nie jest liczba ");
+            }
+            return parsed;
+        }
+        static double MetricConvertion(double input)
+        {
+            double inch;
+            const double converter = 2.54;
+            return  inch = input * converter;
+        }
+        static int IntParsing(string input)
+        {
+            if (!int.TryParse(input, out int parsed))
+            {
+                throw new System.ArgumentException("Parametr nie jest liczba ");
+            }
+            return parsed;
+        }
+    }
+}
